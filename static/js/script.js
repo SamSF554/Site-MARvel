@@ -172,11 +172,12 @@
   function animateCount(card) {
     var target = parseInt(card.getAttribute("data-count"), 10) || 0;
     var suffix = card.getAttribute("data-suffix") || "";
+    var prefix = card.getAttribute("data-prefix") || "";
     var numberEl = card.querySelector(".stat-number");
     if (!numberEl) return;
 
-    if (reduceMotion) {
-      numberEl.textContent = target + suffix;
+    if (typeof reduceMotion !== 'undefined' && reduceMotion) {
+      numberEl.textContent = prefix + target + suffix;
       return;
     }
 
@@ -187,11 +188,13 @@
       if (start === null) start = timestamp;
       var progress = Math.min((timestamp - start) / duration, 1);
       var value = Math.floor(progress * target);
-      numberEl.textContent = value + suffix;
+      
+      numberEl.textContent = prefix + value + suffix; 
+      
       if (progress < 1) {
         window.requestAnimationFrame(step);
       } else {
-        numberEl.textContent = target + suffix;
+        numberEl.textContent = prefix + target + suffix; 
       }
     }
 

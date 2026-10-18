@@ -443,45 +443,39 @@ button {
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin: 1.5rem 0; /* Evita colisão com os textos acima/abaixo no mobile */
+  margin: 1.5rem 0;
 }
 
 /* Card principal refinado */
 .hero-path-card {
   width: 100%;
-  max-width: 360px; /* Garante tamanho máximo sem estourar a tela */
+  max-width: 360px;
   aspect-ratio: 1 / 1;
   border-radius: var(--radius-lg, 24px);
-  position: relative;
-  overflow: hidden; /* OBRIGATÓRIO: Corta a ilustração nas bordas arredondadas */
+  overflow: hidden;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.6rem;
+  flex-direction: column; /* Empilha os itens (imagem em cima, texto embaixo) */
+  background-color: #f4f0ff; 
+}
+
+/* SVG agora ocupa apenas o espaço disponível ACIMA do texto */
+.hero-svg-asset {
+  width: 100%;
+  flex: 1; /* Faz a imagem crescer e ocupar todo o espaço que sobra no card */
+  min-height: 0; /* Evita bugs de flexbox no Firefox/Safari */
+  object-fit: contain; 
+  object-position: center bottom; /* Alinha a imagem para "apoiar" na linha do texto */
+  padding: 1.5rem; /* Respiro em volta do SVG para não encostar nas bordas */
   box-sizing: border-box;
 }
 
-/* SVG posicionado e isolado */
-.hero-svg-asset {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* Enquadra sem distorcer */
-  object-position: center;
-  /* Espaçamento interno inferior para a arte não atropelar o texto */
-  padding: 1rem 1rem 4rem 1rem; 
-  pointer-events: none;
-  z-index: 1;
-}
-
-/* Texto sempre na frente da imagem */
+/* Texto fica na base naturalmente, sem sobrepor a imagem */
 .hero-path-card-label {
-  position: relative;
-  z-index: 2; /* Fica acima da camada da imagem */
   display: flex;
   flex-direction: column;
+  padding: 1.2rem 1.6rem;
+  background-color: var(--bg-surface, #ffffff);
+  border-top: 1px solid rgba(0, 0, 0, 0.08); /* Linha divisória */
   font-size: 0.92rem;
   color: var(--color-ink-soft);
 }
@@ -490,6 +484,7 @@ button {
   font-family: var(--font-display);
   font-size: 1.3rem;
   color: var(--color-ink);
+  margin-bottom: 0.2rem;
 }
 
 /* =========================================================
@@ -981,4 +976,76 @@ body.is-loading {
   .hero-actions .btn {
     width: 100%;
   }
+}
+/* Novos estilos para a Equipe */
+.grid-equipe {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas, formando 2 linhas (2x3) */
+  gap: 20px;
+  margin-top: 20px;
+}
+
+/* Responsividade para manter o layout legível em telas menores */
+@media (max-width: 900px) {
+  .grid-equipe {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid-equipe {
+    grid-template-columns: 1fr;
+  }
+}
+.card-membro {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  transition: transform 0.3s ease;
+}
+.card-membro:hover {
+  transform: translateY(-5px);
+}
+.card-conteudo {
+  padding: 20px;
+  text-align: center;
+}
+.card-conteudo h4 {
+  margin: 0 0 10px 0;
+  font-size: 1.1rem;
+  color: var(--text-primary);
+}
+.card-conteudo .descricao {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* Novos estilos para o Contato */
+.contato-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+.contato-info-texto {
+  flex: 1;
+  min-width: 280px;
+}
+.contato-bloco-dados {
+  flex: 1;
+  min-width: 280px;
+}
+.dados-item {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: var(--text-primary);
+}
+.dados-item strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  margin-bottom: 4px;
 }
