@@ -1,7 +1,7 @@
 :root {
   --color-bg: #FFFFFF;
   --color-bg-alt: #F3F5F4;
-  --color-bg-dark: #16211F;
+  --color-bg-dark: #0d1413;
   --color-ink: #16211F;
   --color-ink-soft: #4B5854;
   --color-ink-on-dark: #F3F5F4;
@@ -33,8 +33,8 @@
 }
 
 /* =========================================================
-   RESET BÁSICO
-   ========================================================= */
+  RESET BÁSICO & TIPOGRAFIA
+========================================================= */
 *,
 *::before,
 *::after {
@@ -131,8 +131,8 @@ button {
 }
 
 /* =========================================================
-   ACESSIBILIDADE — foco visível e link de pular conteúdo
-   ========================================================= */
+  ACESSIBILIDADE
+========================================================= */
 :focus-visible {
   outline: 3px solid var(--color-accent-deep);
   outline-offset: 3px;
@@ -156,8 +156,8 @@ button {
 }
 
 /* =========================================================
-   UTILITÁRIOS DE LAYOUT
-   ========================================================= */
+  UTILITÁRIOS DE LAYOUT
+========================================================= */
 .section {
   padding: clamp(4rem, 8vw, 7rem) 1.5rem;
 }
@@ -226,8 +226,8 @@ button {
 }
 
 /* =========================================================
-   BOTÕES
-   ========================================================= */
+  BOTÕES
+========================================================= */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -267,8 +267,8 @@ button {
 }
 
 /* =========================================================
-   HEADER / NAVBAR
-   ========================================================= */
+  HEADER / NAVBAR
+========================================================= */
 .site-header {
   position: fixed;
   inset-inline: 0;
@@ -394,8 +394,8 @@ button {
 }
 
 /* =========================================================
-   HERO
-   ========================================================= */
+  HERO
+========================================================= */
 .hero {
   padding: calc(var(--header-height) + 3.5rem) 1.5rem 5rem;
   background:
@@ -437,7 +437,6 @@ button {
   margin-top: 2rem;
 }
 
-/* Contêiner externo do fluxo responsivo */
 .hero-visual {
   display: flex;
   justify-content: center;
@@ -446,36 +445,33 @@ button {
   margin: 1.5rem 0;
 }
 
-/* Card principal refinado */
 .hero-path-card {
   width: 100%;
   max-width: 360px;
   aspect-ratio: 1 / 1;
-  border-radius: var(--radius-lg, 24px);
+  border-radius: var(--radius-lg);
   overflow: hidden;
   display: flex;
-  flex-direction: column; /* Empilha os itens (imagem em cima, texto embaixo) */
-  background-color: #f4f0ff; 
+  flex-direction: column;
+  background-color: #f4f0ff;
 }
 
-/* SVG agora ocupa apenas o espaço disponível ACIMA do texto */
 .hero-svg-asset {
   width: 100%;
-  flex: 1; /* Faz a imagem crescer e ocupar todo o espaço que sobra no card */
-  min-height: 0; /* Evita bugs de flexbox no Firefox/Safari */
-  object-fit: contain; 
-  object-position: center bottom; /* Alinha a imagem para "apoiar" na linha do texto */
-  padding: 1.5rem; /* Respiro em volta do SVG para não encostar nas bordas */
+  flex: 1;
+  min-height: 0;
+  object-fit: contain;
+  object-position: center bottom;
+  padding: 1.5rem;
   box-sizing: border-box;
 }
 
-/* Texto fica na base naturalmente, sem sobrepor a imagem */
 .hero-path-card-label {
   display: flex;
   flex-direction: column;
   padding: 1.2rem 1.6rem;
-  background-color: var(--bg-surface, #ffffff);
-  border-top: 1px solid rgba(0, 0, 0, 0.08); /* Linha divisória */
+  background-color: var(--color-bg);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
   font-size: 0.92rem;
   color: var(--color-ink-soft);
 }
@@ -488,8 +484,8 @@ button {
 }
 
 /* =========================================================
-   CARD GRIDS
-   ========================================================= */
+  CARDS & GRIDS
+========================================================= */
 .card-grid {
   display: grid;
   gap: 1.5rem;
@@ -503,13 +499,8 @@ button {
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
-.card-grid--4 {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
 .info-card,
-.goal-card,
-.team-card {
+.goal-card {
   background: var(--color-bg);
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
@@ -522,10 +513,6 @@ button {
   font-size: 1.2rem;
 }
 
-.goal-icon {
-  margin-bottom: 1rem;
-}
-
 .goal-card {
   transition: transform var(--transition-base), border-color var(--transition-base);
 }
@@ -536,8 +523,8 @@ button {
 }
 
 /* =========================================================
-   IMPACTO / ESTATÍSTICAS
-   ========================================================= */
+  IMPACTO / ESTATÍSTICAS
+========================================================= */
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -570,10 +557,6 @@ button {
   order: 1;
   font-family: var(--font-display);
   font-size: clamp(2.2rem, 4vw, 2.8rem);
-  /* Mantido sólido (e não em degradê) de propósito: sobre o fundo escuro
-     desta seção, a ponta mais escura do roxo (#5e17eb) cai abaixo do
-     contraste mínimo recomendado — inaceitável num site sobre
-     acessibilidade visual. */
   color: var(--color-accent);
   margin-bottom: 0.2rem;
 }
@@ -585,75 +568,68 @@ button {
 }
 
 /* =========================================================
-   EQUIPE
-   ========================================================= */
-.team-card {
-  text-align: center;
-  transition: transform var(--transition-base), box-shadow var(--transition-base);
+  EQUIPE
+========================================================= */
+.grid-equipe {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  justify-content: center;
+  align-items: start;
+  margin-top: 24px;
 }
 
-.team-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px -20px rgba(22, 33, 31, 0.35);
-}
-
-.team-photo {
-  width: 96px;
-  height: 96px;
-  border-radius: 50%;
-  margin: 0 auto 1.1rem;
-  object-fit: cover;
-  border: 3px solid var(--color-accent-soft);
-}
-
-.team-role {
-  color: var(--color-accent-deep);
-  font-weight: 700;
-  font-size: 0.95rem;
-  margin-bottom: 0.6rem;
-}
-
-.team-bio {
-  font-size: 0.95rem;
-  margin-inline: auto;
-}
-
-.team-social {
+.card-membro {
   display: flex;
-  justify-content: center;
-  gap: 0.75rem;
-  margin-top: 1rem;
-}
-
-.team-social a {
-  display: inline-flex;
-  width: 38px;
-  height: 38px;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  background: var(--color-bg-alt);
-  color: var(--color-ink);
-  transition: background var(--transition-fast), color var(--transition-fast);
+  text-align: center;
 }
 
-.team-social a:hover {
-  background: var(--color-accent);
-  color: #fff;
+.card-membro img {
+  width: 100%;
+  max-width: 200px;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.card-conteudo h4 {
+  margin: 0 0 8px 0;
+  font-size: 1.1rem;
+}
+
+.card-conteudo .descricao {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+}
+
+.nota-rodape-equipe {
+  margin: 32px auto 0 auto;
+  text-align: center;
+  max-width: 800px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-ink-soft);
 }
 
 /* =========================================================
-   CONTATO
-   ========================================================= */
-.contact-grid--single {
-  grid-template-columns: minmax(0, 1fr);
+  CONTATO
+========================================================= */
+.contato-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 30px;
+  flex-wrap: wrap;
 }
 
-.contact-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
-  gap: 2rem;
-  align-items: start;
+.contato-info-texto,
+.contato-bloco-dados {
+  flex: 1;
+  min-width: 280px;
 }
 
 .contact-info {
@@ -679,67 +655,22 @@ button {
   margin-bottom: 0.2rem;
 }
 
-.contact-list a {
-  font-weight: 700;
-  color: var(--color-accent-deep);
+.dados-item {
+  margin-bottom: 15px;
+  font-size: 16px;
+  color: var(--color-ink);
+}
+
+.dados-item strong {
+  display: block;
+  font-size: 0.9rem;
+  color: var(--color-ink-soft);
+  margin-bottom: 4px;
 }
 
 /* =========================================================
-   FOOTER
-   ========================================================= */
-.site-footer {
-  background: var(--color-bg-dark);
-  color: var(--color-ink-on-dark);
-  padding: 4rem 1.5rem 1.5rem;
-}
-
-.footer-inner {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr 1fr;
-  gap: 2.5rem;
-  padding-bottom: 2.5rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
-}
-
-.footer-brand p {
-  color: var(--color-ink-soft-on-dark);
-  max-width: 32ch;
-  margin-top: 0.8rem;
-}
-
-.footer-links h3,
-.footer-social h3 {
-  font-family: var(--font-body);
-  font-size: 0.95rem;
-  color: var(--color-ink-soft-on-dark);
-  margin-bottom: 1rem;
-}
-
-.footer-links li,
-.footer-social li {
-  margin-bottom: 0.6rem;
-}
-
-.footer-links a,
-.footer-social a {
-  transition: color var(--transition-fast);
-}
-
-.footer-links a:hover,
-.footer-social a:hover {
-  color: var(--color-accent);
-}
-
-.footer-copy {
-  text-align: center;
-  color: var(--color-ink-soft-on-dark);
-  font-size: 0.88rem;
-  margin: 1.5rem 0 0;
-}
-
-/* =========================================================
-   TELA DE CARREGAMENTO (PRELOADER)
-   ========================================================= */
+  PRELOADER
+========================================================= */
 body.is-loading {
   overflow: hidden;
 }
@@ -768,7 +699,6 @@ body.is-loading {
   gap: 0.7rem;
 }
 
-/* Lobo */
 .preloader-mark {
   display: block;
   width: 86px;
@@ -799,54 +729,6 @@ body.is-loading {
   color: var(--color-accent-deep);
 }
 
-@keyframes loboPulse {
-
-  0%,
-  100% {
-    transform: scale(0.92);
-    opacity: 0.72;
-  }
-
-  50% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.preloader-text {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: 0.02em;
-  color: var(--color-ink-soft);
-}
-
-@keyframes trilhaStep {
-
-  0%,
-  60%,
-  100% {
-    opacity: 0.35;
-    transform: scale(0.85);
-  }
-
-  30% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes trilhaDraw {
-  0% {
-    stroke-dashoffset: 26;
-  }
-
-  50%,
-  100% {
-    stroke-dashoffset: 0;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
   .preloader-mark {
     animation: none;
@@ -855,8 +737,8 @@ body.is-loading {
 }
 
 /* =========================================================
-   ANIMAÇÕES DE ENTRADA (respeitam prefers-reduced-motion acima)
-   ========================================================= */
+  ANIMAÇÕES DE ENTRADA
+========================================================= */
 [data-reveal] {
   opacity: 0;
   transform: translateY(18px);
@@ -869,14 +751,129 @@ body.is-loading {
 }
 
 /* =========================================================
-   RESPONSIVO
-   ========================================================= */
+  RODAPÉ (SITE FOOTER) - UNIFICADO
+========================================================= */
+.site-footer {
+  background: var(--color-ink);
+  /* Cor da parte superior (acima da linha) */
+  color: var(--color-ink-on-dark);
+  padding: 4rem 0 0 0;
+  /* Espaçamento ajustado para permitir fundo 100% na parte inferior */
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding: 0 1.5rem 2.5rem 1.5rem;
+  /* Margens internas da parte superior */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  /* Linha divisória */
+  align-items: start;
+}
+
+.footer-logo {
+  height: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.logo-sensus {
+  max-width: 140px;
+  margin-bottom: 1rem;
+}
+
+.footer-social svg {
+  max-width: 50px;
+  margin-bottom: 0.8rem;
+  color: var(--color-accent-deep);
+}
+
+.logo-firjan {
+  max-height: 40px;
+  width: auto;
+}
+
+.footer-brand p,
+.footer-social p {
+  color: var(--color-ink-soft-on-dark);
+  max-width: 34ch;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.footer-links h3,
+.footer-social h3 {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--color-ink-on-dark);
+  margin-bottom: 1rem;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-links li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-links a {
+  color: var(--color-ink-soft-on-dark);
+  transition: color var(--transition-fast);
+}
+
+.footer-links a:hover {
+  color: var(--color-accent);
+}
+
+/* --- PARTE INFERIOR (ABAIXO DA LINHA) --- */
+.footer-bottom {
+  background: var(--color-bg-dark);
+  /* <-- ALTERE AQUI PARA A NOVA COR DE FUNDO DESEJADA */
+  width: 100%;
+  padding: 1.5rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-copy {
+  text-align: center;
+  color: var(--color-ink-soft-on-dark);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+/* Responsividade para alinhar o conteúdo da barra inferior em telas maiores */
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: max(1.5rem, calc((100vw - var(--max-width)) / 2 + 1.5rem));
+    padding-right: max(1.5rem, calc((100vw - var(--max-width)) / 2 + 1.5rem));
+  }
+}
+
+/* =========================================================
+  RESPONSIVIDADE (MEDIA QUERIES)
+========================================================= */
+@media (min-width: 768px) {
+  .footer-bottom {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 960px) {
   .card-grid--3 {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .card-grid--4 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
@@ -884,12 +881,8 @@ body.is-loading {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .footer-inner {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer-brand {
-    grid-column: span 2;
+  .grid-equipe {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -902,10 +895,6 @@ body.is-loading {
     order: -1;
     max-width: 280px;
     margin-inline: auto;
-  }
-
-  .contact-grid {
-    grid-template-columns: 1fr;
   }
 }
 
@@ -949,22 +938,18 @@ body.is-loading {
   }
 
   .card-grid--2,
-  .card-grid--3,
-  .card-grid--4 {
+  .card-grid--3 {
     grid-template-columns: 1fr;
   }
 
   .stats-grid {
     grid-template-columns: 1fr 1fr;
   }
+}
 
-  .footer-inner {
+@media (max-width: 600px) {
+  .grid-equipe {
     grid-template-columns: 1fr;
-    text-align: left;
-  }
-
-  .footer-brand {
-    grid-column: auto;
   }
 }
 
@@ -976,76 +961,4 @@ body.is-loading {
   .hero-actions .btn {
     width: 100%;
   }
-}
-/* Novos estilos para a Equipe */
-.grid-equipe {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 colunas, formando 2 linhas (2x3) */
-  gap: 20px;
-  margin-top: 20px;
-}
-
-/* Responsividade para manter o layout legível em telas menores */
-@media (max-width: 900px) {
-  .grid-equipe {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 600px) {
-  .grid-equipe {
-    grid-template-columns: 1fr;
-  }
-}
-.card-membro {
-  background-color: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-  transition: transform 0.3s ease;
-}
-.card-membro:hover {
-  transform: translateY(-5px);
-}
-.card-conteudo {
-  padding: 20px;
-  text-align: center;
-}
-.card-conteudo h4 {
-  margin: 0 0 10px 0;
-  font-size: 1.1rem;
-  color: var(--text-primary);
-}
-.card-conteudo .descricao {
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-/* Novos estilos para o Contato */
-.contato-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
-  gap: 30px;
-  flex-wrap: wrap;
-}
-.contato-info-texto {
-  flex: 1;
-  min-width: 280px;
-}
-.contato-bloco-dados {
-  flex: 1;
-  min-width: 280px;
-}
-.dados-item {
-  margin-bottom: 15px;
-  font-size: 16px;
-  color: var(--text-primary);
-}
-.dados-item strong {
-  display: block;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-  margin-bottom: 4px;
 }
